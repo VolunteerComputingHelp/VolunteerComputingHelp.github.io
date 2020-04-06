@@ -8,27 +8,30 @@
 <h1>Volunteer Computing Help</h1>
 This is a small web page to accompany a <a href="https://github.com/VolunteerComputingHelp">set of projects on github</a> that all aim at somehow augmenting
 <ul>
-<li>the user base - so the science of these projects gets carried into our society<li/>
-<li>the sheer power - we should use our hardware and the power it consumes to the best of its potential<li/>
+<li>the user base - so the science of these projects gets carried into our society</li>
+<li>the sheer power - we should use our hardware and the power it consumes to the best of its potential</li>
 </ul>
 of volunteer computing projects.
 
 We use this site to communicate the extra mile (kilometer for us) that users (or project administrators) may have to go to reproduce our work or to integrate that new development in their routine setup. Developments you may be interested to follow-up are:
 <ul>
-<li><a href="#einstein">Einstein@Home Linux ARM clients</a>
+<li>Einstein@Home Linux ARM clients
 <ul>
-<li>BRP project<li/>
-<li>FGRP project<li/>
+<li>BRP project</li>
+<li>FGRP project</li>
 </ul></li>
-<li><a href="#openwrt">BOINC client for OpenWrt</a></li>
+<li>BOINC client for OpenWrt</li>
 </ul>
-<h2 name=einstein><a href="https://einsteinathome.org">Einstein@Home</a></h2>
-Yes. These exist. Binaries for both BRP and FGRP have in the past been sent out on request and are likely to move here - give this new site a few days/weeks to settle. In an ideal world though the project maintainers would just adopt and redistribute them. In the mean time consider to run Rosetta@Home <a href="http://boinc.bakerlab.org/rosetta/">http://boinc.bakerlab.org/rosetta/</a>) or TN-GRID (<a href="http://gene.disi.unitn.it/test/">http://gene.disi.unitn.it/test/</a>) that already support the ARM 64bit platform.
+<h2 name=einstein></h2>
+<a href="https://einsteinathome.org">Einstein@Home</a> is a very fine project for BOINC - all about finding pairs of pulsars and gravitational waves.
+And yes, these 64bit binaries for ARM exist, for both BRP and FGRP, have in the past been sent out on request per email and are likely to move here - give this new site a few days/weeks to settle.
+Eventually, in an ideal world, the project maintainers would rebuild or just adopt and redistribute them, though. It is yet a bit unclear if, in the longer term, by offering these binaries separately, we may be doing a disservice to the community. We will give exact instructions here how to reproduce what we came up with and then also place the binaries - please don't just run arbitrary binaries from web sites since this may pose security risks - to your computer and to the scientific mission of the project.
+In the mean time consider to run Rosetta@Home <a href="http://boinc.bakerlab.org/rosetta/">http://boinc.bakerlab.org/rosetta/</a>) or TN-GRID (<a href="http://gene.disi.unitn.it/test/">http://gene.disi.unitn.it/test/</a>) that already support the ARM 64bit platform.
 <h2 name=openwrt>BOINC Client for the OpenWrt Router OS</h2>
 Our <a href="https://github.com/openwrt/packages/pull/11768">pull request</a> to consider BOINC for redistribution with <a href="https://www.openwrt.org">OpenWrt</a> just went out in early April. This is still an ongoing development, e.g. for an integration with the web-interface via which routers are configured. And nothing will happen until the pull request is decided about, but we are very much looking forward to it all since it means that:
 <ul>
-<li>there are plenty of energy-efficient machines running 24/7 with spare cycles that BOINC could tap into<li/>
-<li>OpenWrt is close to the Internet-of-Things and many devices are especially designed to interact with all sorts of sensors, which may trigger new use cases for the BOINC technology<li/>
+<li>there are plenty of energy-efficient machines running 24/7 with spare cycles that BOINC could tap into</li>
+<li>OpenWrt is close to the Internet-of-Things and many devices are especially designed to interact with all sorts of sensors, which may trigger new use cases for the BOINC technology</li>
 </ul>
 If you want to run BOINC on your router now then please follow the pull request. Once that is in, the package will be redistributed with the OpenWrt SNAPSHOT distribution. If you just cannot wait any longer then look for an integration of the <a href="https://github.com/VolunteerComputingHelp/packages/tree/master/net/boinc">BOINC build instructions for OpenWrt</a> with your feeds of the OpenWrt SDK. We have already tested on the OpenWrt targets for the X86_64, ZYNQ and mvebu - the latter two both featuring an ARM Cortex-A9. If you have other platforms at your disposal to test the package on then this would be much appreciated.
 </body>
