@@ -48,5 +48,31 @@ Our <a href="https://github.com/openwrt/packages/pull/11768">pull request</a> to
 <p>
 If you want to run BOINC on your router now then please follow the pull request. Once that is in, the package will be redistributed with the OpenWrt SNAPSHOT distribution. If you just cannot wait any longer then look for an integration of the <a href="https://github.com/VolunteerComputingHelp/packages/tree/master/net/boinc">BOINC build instructions for OpenWrt</a> with your feeds of the OpenWrt SDK. We have already tested on the OpenWrt targets for the X86_64, ZYNQ and mvebu - the latter two both featuring an ARM Cortex-A9. If you have other platforms at your disposal to test the package on then this would be much appreciated.
 </p>
+<h3>How can this work on such small devices?</h3>
+<p>
+Well, yes. Small routers are typically stressed for place on their flash "drive". And if there are no spare 2MB for the boinc application then the device cannot be used for BOINC. The special demands in terms of disk space and compute alike however come from the applications that BOINC first downloads from the project's server and the scientific data that the application works on. This may exceed Gigabytes and few OpenWrt devices, if any, provide that. The trick is an external drive, like an USB stick or (for some advanced devices) a SATA device, that shall be mounted at /opt/ or /opt/boinc. All communication between BOINC and the scientific app is performed on files within /opt/boinc. This way, the device's internal drive is protected from frequent writes.
+</p>
+<h3>How can I help?</h3>
+<p>
+The boinc package is available as a snapshot (and in the upcoming releases) on <a href="https://downloads.openwrt.org/snapshots/packages">https://downloads.openwrt.org/snapshots/packages</a>/&lt;yourtarget&gt;/packages/boinc_7.16.5-1_&lt;yourtarget&gt;.ipk, e.g. for
+<ul>
+<li>aarch64_cortex-a53: <a href="https://downloads.openwrt.org/snapshots/packages/aarch64_cortex-a53/packages/boinc_7.16.5-1_aarch64_cortex-a53.ipk">https://downloads.openwrt.org/snapshots/packages/aarch64_cortex-a53/packages/boinc_7.16.5-1_aarch64_cortex-a53.ipk</a></li>
+<li>arm_cortex-a9_neon: <a href="https://downloads.openwrt.org/snapshots/packages/i386_pentium4/packages/boinc_7.16.5-1_arm_cortex-a9_neon.ipk">https://downloads.openwrt.org/snapshots/packages/i386_pentium4/packages/boinc_7.16.5-1_arm_cortex-a9_neon.ipk</a></li>
+<li>...</li>
+<li>i386_pentium4: <a href="https://downloads.openwrt.org/snapshots/packages/i386_pentium4/packages/boinc_7.16.5-1_i386_pentium4.ipk">https://downloads.openwrt.org/snapshots/packages/i386_pentium4/packages/boinc_7.16.5-1_i386_pentium4.ipk</a></li>
+<li>...</li>
+<li>x86_86: <a href="https://downloads.openwrt.org/snapshots/packages/x86_64/packages/boinc_7.16.5-1_x86_64.ipk">https://downloads.openwrt.org/snapshots/packages/x86_64/packages/boinc_7.16.5-1_x86_64.ipk</a></li>
+</ul>
+Please use opkg to install that package (or whatever was backported to your version of OpenWrt) and report difficulties as an issue <a href="https://github.com/VolunteerComputingHelp/VolunteerComputingHelp.github.io/issues">here</a> so we can improve on whatever we may not be aware about.
+</p>
+<p>
+Run it. We have partnered up with <a href="http://gene.disi.unitn.it/test/">TN-GRID</a> (<a href="http://gene.disi.unitn.it/test/forum_thread.php?id=265#1698">who just also started a Covid-19 related extensions</a>) that needs only about 65MB of RAM to compute. If your device is running on an ARM device then this project will distribute a scientific app to you. If you are using another device with that amount of spare RAM available then please create an <a href="https://github.com/VolunteerComputingHelp/VolunteerComputingHelp.github.io/issues">issue</a> requesting a scientific app for it.
+</p>
+<p>
+Run it on regular Linux/MacOS/Windows machines. Most Linux distros have a package for the client, otherwise refer to <a href="https://boinc.berkeley.edu">https://boinc.berkeley.edu</a> to download a client. <a href="boinc.bakerlab.org/rosetta/">Rosetta@Home</a>, <a href="http://gene.disi.unitn.it/test/">TN-GRID</a>, <a href="https://www.worldcommunitygrid.org">World Community Grid</a> and <a href="https://www.gpugrid.net">GPUGRID</a> are all addressing questions in molecular biology that should be worthwhile to support these days. Also consider <a href="https://foldingathome.org">Folding@Home</a>, that is independent from BOINC but is also doing good stuff.
+</p>
+<p>
+Spread the word!
+</p>
 </body>
 </html>
