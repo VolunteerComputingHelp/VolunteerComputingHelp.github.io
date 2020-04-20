@@ -1,0 +1,9 @@
+[
+   {
+      "name": "TN-Grid",
+      "category": "Biology/Medecine",
+      "URL": "http://gene.disi.unitn.it/test/",
+      "description": "TN-Grid runs a causal relationships discovery algorithm. The application elaborates gene expression data
+                      and produces a list of genes in putative causal relationships with an initial set of genes."
+   }
+]
