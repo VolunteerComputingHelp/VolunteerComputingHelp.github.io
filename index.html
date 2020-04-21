@@ -85,7 +85,44 @@ Please use opkg to install that package (or whatever was backported to your vers
 <i>Run it also on regular Linux/MacOS/Windows machines.</i> Most Linux distros have a package for the client, otherwise refer to <a href="https://boinc.berkeley.edu">https://boinc.berkeley.edu</a> to download a client. <a href="boinc.bakerlab.org/rosetta/">Rosetta@Home</a>, <a href="http://gene.disi.unitn.it/test/">TN-GRID</a>, <a href="https://www.worldcommunitygrid.org">World Community Grid</a> and <a href="https://www.gpugrid.net">GPUGRID</a> are all addressing questions in molecular biology that should be worthwhile to support these days. Also consider <a href="https://foldingathome.org">Folding@Home</a>, that is independent from BOINC but is also doing good stuff.
 </p>
 <p>
-Spread the word!
+<i>Spread the word!</i>
+<h3>What if my platform is none of the above?</h3>
+Right. That is what is so special about OpenWrt. Many exotic small platforms. As of today, we only have an automated generation of the scientific app across all platforms for the TN-GRID project. For other projects you need to find the sources and compile the client yourselves or persuade the project maintainers to support OpenWrt. You may need to disguise your client in the cc_config.xml file if your platform is not yet supported. If you are an OpenWrt or general Linux professional we would like to hear from you, though. Maybe there is a way to have your platform to be official supported - this is beyond our personal control, though. 
+
+To raise awareness of the platform, please consider registering the machine with the project, being supported or not:
+<ol>
+	<li>get account for the project (likely to be done already)
+	<li>copy account key from the project's account page
+	<li>attach router to project
+<pre>cd /opt/boinc
+boinccmd --project_attach PROJECTURL ACCOUNTKEY</pre>
+	<li>if you see tasks assigned for the computer on your account page then your machine should already be crunching. Check with the "top" utility.
+</ol>
+
+If you read till here then your machine is indeed not supported.
+
+<dl>
+	<dt>TN-GRID</dt>
+	<dd>
+	We cross-built the app for a series of platforms and offer respective packages in the <a href="/apps">apps</a> directory. This is a 70MB package and your router by chance does not like that. Please first
+		<ol>
+			<li>mount a spare drive/USB stick to /opt or /opt/boinc - BOINC will have created a folder /opt/boinc if not already existing and populate it
+			<li>install the boinc package which should be part of the SNAPSHOT distribution - talk to us if not
+			<li>download your app package to that external drive
+			<li>untar it, and the data tar file within it
+			<li>run the test scripts
+		</ol>
+		If the tests are fine then continue below, otherwise please create an issue.
+		<ol start=6>
+			<li>report the platform_name stated in client_state.xml to us
+			<li>set up an app_info.xml describing your app
+			<li>set up cc_config.xml to change the presented platform
+		</ol>
+	</dd>
+	<dt>Others</dt>
+	<dd>No idea. We don't yet know about how large that cake of OpenWrt users is with an interest in BOINC. Other projects likely will want their share once that cake has grown enough.</dd>
+</dl>
+
 </p>
 </body>
 </html>
