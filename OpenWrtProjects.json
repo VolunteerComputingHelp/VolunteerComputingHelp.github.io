@@ -1,6 +1,7 @@
 [
    {
       "name": "TN-Grid",
+      "organization": "University of Trento";
       "category": "Biology/Medecine",
       "URL": "http://gene.disi.unitn.it/test/",
       "description": "TN-Grid determines cause-effect relationships in gene expression data."
