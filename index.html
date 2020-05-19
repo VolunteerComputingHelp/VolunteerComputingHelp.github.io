@@ -123,15 +123,20 @@ If you read till here then your machine is indeed not supported.
 	    Instead of presenting your computer with the platform that it really is, i.e. one with the musl C library, you may
 	    then override that default spec with the name your platform would have with a regular Linux and the GNU C library.
             Hereto, if running a 32bit ARM machine, in the BOINC data directory (/opt/boinc) create the file cc_config.xml as follows:
-<code>
-<cc_config>
-<options>
-<alt_platform>arm-unknown-linux-gnueabihf</alt_platform>
-</options>
-</cc_config>
-</code>
+<pre>
+&lt;cc_config&gt;
+  &lt;options&gt;
+    &lt;alt_platform&gt;arm-unknown-linux-gnueabihf&lt;/alt_platform&gt;
+  &lt;/options&gt;
+&lt;/cc_config&gt;
+</pre>
 	    For other platforms, please inspect <a href="https://boinc.berkeley.edu/trac/wiki/BoincPlatforms">https://boinc.berkeley.edu/trac/wiki/BoincPlatforms</a>
-	    for the preferred string to get the platform identified.
+	    for the preferred string to get the platform identified. For the example given, the platforms reported to the project are stated in a grep for 'platform' in the file client_state.xml:
+<pre>
+&lt;platform_name&gt;arm-openwrt-linux-muslgnueabi&lt;/platform_name&gt;
+&lt;alt_platform&gt;arm-zynq-router-openwrt-muslgnueabi&lt;/alt_platform&gt;
+&lt;alt_platform&gt;arm-unknown-linux-gnueabihf&lt;/alt_platform&gt;
+</pre>		
 	</p>
 	<p>
 	    Caveat:
