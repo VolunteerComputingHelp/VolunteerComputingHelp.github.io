@@ -104,7 +104,13 @@ If you read till here then your machine is indeed not supported.
 <dl>
 	<dt>TN-GRID</dt>
 	<dd>
-	We cross-built the app for a series of platforms and offer respective packages in the <a href="https://github.com/VolunteerComputingHelp/VolunteerComputingHelp.github.io/tree/master/apps">apps</a> directory. This is a 70MB package and your router by chance does not like that. Please first
+	  <p>
+	      We cross-built the app for a series of platforms and offer respective packages in the
+	      <a href="https://github.com/VolunteerComputingHelp/VolunteerComputingHelp.github.io/tree/master/apps">apps</a>
+	      directory. This is a 70MB package and your router by chance does not like that since this may exceed the typically scarse flash storage on the device.
+	  </p>
+		
+	  <p>Please first
 		<ol start=5>
 			<li>mount a spare drive/USB stick to /opt or /opt/boinc - BOINC will have created a folder /opt/boinc if not already existing and populate it
 			<li>install the boinc package which should be part of the SNAPSHOT distribution - talk to us if not
@@ -112,11 +118,14 @@ If you read till here then your machine is indeed not supported.
 			<li>untar it, and the data tar file within it
 			<li>run the test scripts
 		</ol>
-		If the tests are fine then continue below, otherwise please create an issue.
+	  </p>
+	  <p>
+	  	If the tests are fine then continue below, otherwise please create an issue.
 		<ol start=10>
 			<li>report the platform_name stated in client_state.xml to us
 			<li>set up an app_info.xml describing your app
 		</ol>
+	   </p>
 	</dd>
 	<dt>WorldCommunityGrid, Rosetta@Home</dt>
 	<dd><p>These projects distribute their scientific applications as statically linked binaries, i.e. the libc does not matter.
