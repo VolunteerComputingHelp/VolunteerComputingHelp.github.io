@@ -116,11 +116,35 @@ If you read till here then your machine is indeed not supported.
 		<ol start=10>
 			<li>report the platform_name stated in client_state.xml to us
 			<li>set up an app_info.xml describing your app
-			<li>set up cc_config.xml to change the presented platform
 		</ol>
 	</dd>
-	<dt>Others</dt>
-	<dd>No idea. We don't yet know about how large that cake of OpenWrt users is with an interest in BOINC. Other projects likely will want their share once that cake has grown enough.</dd>
+	<dt>WorldCommunityGrid, Rosetta@Home</dt>
+	<dd><p>These projects distribute their scientific applications as statically linked binaries, i.e. the libc does not matter.
+	    Instead of presenting your computer with the platform that it really is, i.e. one with the musl C library, you may
+	    then override that default spec with the name your platform would have with a regular Linux and the GNU C library.
+            Hereto, if running a 32bit ARM machine, in the BOINC data directory (/opt/boinc) create the file cc_config.xml as follows:
+<pre>
+<cc_config>
+<options>
+<platform_name>arm-unknown-linux-gnueabihf</platform_name>
+</options>
+</cc_config>
+</pre>
+	    For other platforms, please inspect <a href="https://boinc.berkeley.edu/trac/wiki/BoincPlatforms">https://boinc.berkeley.edu/trac/wiki/BoincPlatforms</a>
+	    for the preferred string to get the platform identified.
+	</p>
+	<p>
+	    Caveat:
+		<ul>
+		<li>This changes the platform for all projects. So, if not running TN-GRID, WorldCommunityGrid or Rosetta, you will create many faulty work units.
+		<li>Also, there is no way for the statistics to spot that this was originally an OpenWrt machine. Hence - I personally prefer to stay with TN-GRID as the only project that fully supports OpenWrt - yet!
+		</ul>	
+	</p>
+	</dd>
+	<dt>Einstein@Home, others</dt>
+	<dd>No idea. We don't yet know about how large that cake of OpenWrt users is with an interest in BOINC.
+            Other projects likely will want their share once that cake has grown enough. You may want to make a pitch
+	    for OpenWrt on the respective forum of your favorite project.</dd>
 </dl>
 
 </p>
