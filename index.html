@@ -123,13 +123,13 @@ If you read till here then your machine is indeed not supported.
 	    Instead of presenting your computer with the platform that it really is, i.e. one with the musl C library, you may
 	    then override that default spec with the name your platform would have with a regular Linux and the GNU C library.
             Hereto, if running a 32bit ARM machine, in the BOINC data directory (/opt/boinc) create the file cc_config.xml as follows:
-<pre>
+<code>
 <cc_config>
 <options>
-<platform_name>arm-unknown-linux-gnueabihf</platform_name>
+<alt_platform>arm-unknown-linux-gnueabihf</alt_platform>
 </options>
 </cc_config>
-</pre>
+</code>
 	    For other platforms, please inspect <a href="https://boinc.berkeley.edu/trac/wiki/BoincPlatforms">https://boinc.berkeley.edu/trac/wiki/BoincPlatforms</a>
 	    for the preferred string to get the platform identified.
 	</p>
@@ -137,7 +137,7 @@ If you read till here then your machine is indeed not supported.
 	    Caveat:
 		<ul>
 		<li>This changes the platform for all projects. So, if not running TN-GRID, WorldCommunityGrid or Rosetta, you will create many faulty work units.
-		<li>Also, there is no way for the statistics to spot that this was originally an OpenWrt machine. Hence - I personally prefer to stay with TN-GRID as the only project that fully supports OpenWrt - yet!
+		<li>Also, it is unclear if the statistics spot that this was originally an OpenWrt machine. Hence, it may be preferable to stay with TN-GRID as the only project that fully supports OpenWrt - yet!
 		</ul>	
 	</p>
 	</dd>
