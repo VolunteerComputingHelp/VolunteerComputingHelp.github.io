@@ -53,21 +53,29 @@ In the mean time consider to run the WorldCommunityGrid <a href="https://www.wor
 	<li>direct use of novel accelerators like FPGA and (why not) GPUs</li>
 </ul>
 </p>
+<h3>Installing the BOINC package on OpenWrt
+<p>
+	TL;DR: <code>opkg install boinc</code>
+</p>
 <p>
 	If you want to run BOINC on your router now then make sure you run a version 21.02 or later, have the "net" feed of packages and "opkg install boinc".
-	To run the package on the OpenWrt 19.x versions of OpenWrt then you'd need to prepare an image with the SDK. We have already tested on the OpenWrt targets for the X86_64, ZYNQ and mvebu - the latter two both featuring an ARM Cortex-A9. If you have other platforms at your disposal to test the package on then this would be much appreciated.
-	For 21.02 and later we propose to install a self-prepared image that brings the boinc package upfront:
+	To run the package on the OpenWrt 19.x versions of OpenWrt then you'd need to prepare an image with the SDK.
+	We tested the boinc package on the OpenWrt targets for the X86_64, ZYNQ and mvebu platforms - the latter two both featuring an ARM Cortex-A9.
+	If you have other platforms at your disposal to test the package on then this would be much appreciated.
+</p>
+<p>	
+	For 21.02 and later we propose to prepare a self-prepared image that brings the boinc package with it, so there is no need to "opkg install" it:
 <ul>
 	<li>Retrieve imagebuilder for your hardware - here for the Linksys ACM3200
-```
+<pre>
 $ wget https://downloads.openwrt.org/snapshots/targets/mvebu/cortexa9/openwrt-imagebuilder-mvebu-cortexa9.Linux-x86_64.tar.xz
-```
+</pre>
 	</li><li>Untar it
-```
+<pre>
 tar xJvf openwrt-imagebuilder*tar.xz
-```
+</pre>
 	</li><li>See if this works
-```
+<pre>
 $ cd openwrt-imagebuilder-*
 $ make help
 
@@ -96,22 +104,22 @@ Print manifest:
 
 	make manifest PROFILE="<profilename>" # override the default target profile
 	make manifest PACKAGES="<pkg1> [<pkg2> [<pkg3> ...]]" # include extra packages
-```
-	</li><li>build the image with BOINC shipping readily usable (caveat about the /opt directory needing a mounted USB drive - see below)
-```
+</pre>
+</li><li>build the image with BOINC shipping readily usable (caveat about the /opt directory needing a mounted USB drive - see below)
+<pre>
 make image PACKAGES="boinc vim"
-```
-	This will be real quick - very few minutes only.
+</pre>
+This will be real quick - very few minutes only.
 	</li><li>Find image
-```
+<pre>
 $ ls -ltr bin/targets/mvebu/cortexa9/
 total 37356
 -rw-r--r-- 1 steffen steffen 38236972 Mar  9 19:00 openwrt-mvebu-cortexa9-buffalo_ls421de-squashfs-sysupgrade.bin
 -rw-r--r-- 1 steffen steffen     3010 Mar  9 19:00 openwrt-mvebu-cortexa9-buffalo_ls421de.manifest
 -rw-r--r-- 1 steffen steffen     1198 Mar  9 19:00 profiles.json
 -rw-r--r-- 1 steffen steffen      323 Mar  9 19:00 sha256sums	
-```
-	</li>
+</pre>
+</li>
 </ul>
 </p>
 <h3>How can this work on such small devices?</h3>
