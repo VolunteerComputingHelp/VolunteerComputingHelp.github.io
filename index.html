@@ -23,7 +23,7 @@ We use this site to communicate the extra mile (kilometer for us) that users (or
 <li>BRP project</li>
 <li>FGRP project</li>
 </ul></li>
-<li>BOINC client for OpenWrt</li>
+<li><a href="#openwrt">BOINC client for OpenWrt</a></li>
 </ul>
 </p>
 <h2 name=einstein>ARM 64bit clients for Einstein@Home</h2>
@@ -35,18 +35,84 @@ These 64bit binaries for ARM exist, for both BRP and FGRP, have in the past been
 Eventually, in an ideal world, the project maintainers would rebuild or just adopt and redistribute them, though. It is yet a bit unclear if, in the longer term, by offering these binaries separately, we may be doing a disservice to the community. We will give exact instructions here how to reproduce what we came up with and then also place the binaries - please don't just run arbitrary binaries from web sites since this may pose security risks - to your computer and to the scientific mission of the project.
 </p>
 <p>
-In the mean time consider to run Rosetta@Home <a href="http://boinc.bakerlab.org/rosetta/">http://boinc.bakerlab.org/rosetta/</a>) or TN-GRID (<a href="http://gene.disi.unitn.it/test/">http://gene.disi.unitn.it/test/</a>) that already support the ARM 64bit platform.
+In the mean time consider to run the WorldCommunityGrid <a href="https://www.worldcommunitygrod.org">www.worldcommunitygrid.org</a>, Rosetta@Home <a href="http://boinc.bakerlab.org/rosetta/">http://boinc.bakerlab.org/rosetta/</a>) or TN-GRID (<a href="http://gene.disi.unitn.it/test/">http://gene.disi.unitn.it/test/</a>) that already support the ARM 64bit platform.
 </p>
 <h2 name=openwrt>BOINC Client for the OpenWrt Router OS</h2>
 <p>
-Our <a href="https://github.com/openwrt/packages/pull/11768">pull request</a> to consider BOINC for redistribution with <a href="https://www.openwrt.org">OpenWrt</a> just went out in early April. This is still an ongoing development, e.g. for an integration with the web-interface via which routers are configured. And nothing will happen until the pull request is decided about, but we are very much looking forward to it all since it means that:
+	In April 2020 we prepared a boinc package for the OpenWrt operating system.
+	The <a href="https://github.com/openwrt/packages/pull/11768">pull request</a> was accepted.
+	There already is a "net/boinc" package for the 21.02 release of OpenWrt and the development snapshot offers it, too.
+</p>
+<p>
+        Developments for are still ongoing.
+	There is in particular a nice web-interface via which routers can be configured.
+	OpenWrt we anticipate to bring:
 <ul>
-<li>there are plenty of energy-efficient machines running 24/7 with spare cycles that BOINC could tap into</li>
-<li>OpenWrt is close to the Internet-of-Things and many devices are especially designed to interact with all sorts of sensors, which may trigger new use cases for the BOINC technology</li>
+	<li>plenty of energy-efficient machines running 24/7 with spare cycles that BOINC could tap into</li>
+	<li>vicinity to the Internet-of-Things and many devices are especially designed to interact with all sorts of sensors, which may trigger new use cases for the BOINC technology</li>
+	<li>direct use of novel accelerators like FPGA and (why not) GPUs</li>
 </ul>
 </p>
 <p>
-If you want to run BOINC on your router now then please follow the pull request. Once that is in, the package will be redistributed with the OpenWrt SNAPSHOT distribution. If you just cannot wait any longer then look for an integration of the <a href="https://github.com/VolunteerComputingHelp/packages/tree/master/net/boinc">BOINC build instructions for OpenWrt</a> with your feeds of the OpenWrt SDK. We have already tested on the OpenWrt targets for the X86_64, ZYNQ and mvebu - the latter two both featuring an ARM Cortex-A9. If you have other platforms at your disposal to test the package on then this would be much appreciated.
+	If you want to run BOINC on your router now then make sure you run a version 21.02 or later, have the "net" feed of packages and "opkg install boinc".
+	To run the package on the OpenWrt 19.x versions of OpenWrt then you'd need to prepare an image with the SDK. We have already tested on the OpenWrt targets for the X86_64, ZYNQ and mvebu - the latter two both featuring an ARM Cortex-A9. If you have other platforms at your disposal to test the package on then this would be much appreciated.
+	For 21.02 and later we propose to install a self-prepared image that brings the boinc package upfront:
+<ul>
+	<li>Retrieve imagebuilder for your hardware - here for the Linksys ACM3200
+```
+$ wget https://downloads.openwrt.org/snapshots/targets/mvebu/cortexa9/openwrt-imagebuilder-mvebu-cortexa9.Linux-x86_64.tar.xz
+```
+	</li><li>Untar it
+```
+tar xJvf openwrt-imagebuilder*tar.xz
+```
+	</li><li>See if this works
+```
+$ cd openwrt-imagebuilder-*
+$ make help
+
+Available Commands:
+	help:	This help text
+	info:	Show a list of available target profiles
+	clean:	Remove images and temporary build files
+	image:	Build an image (see below for more information).
+
+Building images:
+	By default 'make image' will create an image with the default
+	target profile and package set. You can use the following parameters
+	to change that:
+
+	make image PROFILE="<profilename>" # override the default target profile
+	make image PACKAGES="<pkg1> [<pkg2> [<pkg3> ...]]" # include extra packages
+	make image FILES="<path>" # include extra files from <path>
+	make image BIN_DIR="<path>" # alternative output directory for the images
+	make image EXTRA_IMAGE_NAME="<string>" # Add this to the output image filename (sanitized)
+	make image DISABLED_SERVICES="<svc1> [<svc2> [<svc3> ..]]" # Which services in /etc/init.d/ should be disabled
+	make image ADD_LOCAL_KEY=1 # store locally generated signing key in built images
+
+Print manifest:
+	List "all" packages which get installed into the image.
+	You can use the following parameters:
+
+	make manifest PROFILE="<profilename>" # override the default target profile
+	make manifest PACKAGES="<pkg1> [<pkg2> [<pkg3> ...]]" # include extra packages
+```
+	</li><li>build the image with BOINC shipping readily usable (caveat about the /opt directory needing a mounted USB drive - see below)
+```
+make image PACKAGES="boinc vim"
+```
+	This will be real quick - very few minutes only.
+	</li><li>Find image
+```
+$ ls -ltr bin/targets/mvebu/cortexa9/
+total 37356
+-rw-r--r-- 1 steffen steffen 38236972 Mar  9 19:00 openwrt-mvebu-cortexa9-buffalo_ls421de-squashfs-sysupgrade.bin
+-rw-r--r-- 1 steffen steffen     3010 Mar  9 19:00 openwrt-mvebu-cortexa9-buffalo_ls421de.manifest
+-rw-r--r-- 1 steffen steffen     1198 Mar  9 19:00 profiles.json
+-rw-r--r-- 1 steffen steffen      323 Mar  9 19:00 sha256sums	
+```
+	</li>
+</ul>
 </p>
 <h3>How can this work on such small devices?</h3>
 <p>
